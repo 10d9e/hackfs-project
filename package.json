@@ -1,0 +1,75 @@
+{
+  "name": "@prb/hardhat-template",
+  "description": "Hardhat-based template for developing Solidity smart contracts",
+  "version": "1.0.0",
+  "author": {
+    "name": "lodge",
+    "url": "https://github.com/10d9e"
+  },
+  "dependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "@openzeppelin/contracts": "^4.9.3",
+    "@openzeppelin/contracts-upgradeable": "^4.9.3",
+    "@types/bluebird": "^3.5.38",
+    "@types/chai": "^4.2.0",
+    "@types/jest": "^29.5.12",
+    "@types/node": "^20.5.6",
+    "axios": "^1.6.8",
+    "bluebird": "^3.7.2",
+    "chai": "^4.2.0",
+    "dotenv": "^16.3.1",
+    "ethereumjs-wallet": "^1.0.2",
+    "ethers": "6",
+    "hardhat": "^2.22.4",
+    "hardhat-deploy": "^0.12.4",
+    "prettier": "^3.2.5",
+    "solidity-coverage": "^0.8.1",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.2.2"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-ignition-ethers": "^0.15.1"
+  },
+  "files": [
+    "contracts"
+  ],
+  "keywords": [
+    "blockchain",
+    "ethers",
+    "ethereum",
+    "hardhat",
+    "smart-contracts",
+    "solidity",
+    "template",
+    "typescript",
+    "typechain"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "preinstall": "./scripts/setup.sh",
+    "lilypad:setup": "./scripts/setup.sh",
+    "lilypad:start": "./scripts/start.sh",
+    "lilypad:clean": "rm -rf .lilypad",
+    "lilypad:cowsay": "hardhat run scripts/run-cowsay-onchain.ts",
+    "lilypad:up": "./up.sh",
+    "lilypad:down": "./down.sh",
+    "node": "hardhat node --network hardhat",
+    "deploy": "npx hardhat deploy --network geth",
+    "deploy2": "yes | hardhat ignition deploy ./ignition/modules/LilypadControllerModule.ts --network geth",
+    "clean": "hardhat clean && rm -rf ignition/deployments deployments artifacts cache",
+    "compile": "hardhat compile",
+    "coverage": "hardhat coverage --solcoverjs ./.solcover.js --temp artifacts --testfiles \"test/**/*.ts\" && npm run typechain",
+    "lint": "npm run lint:sol && npm run lint:ts && npm run prettier:check",
+    "lint:sol": "solhint --max-warnings 0 \"contracts/**/*.sol\"",
+    "lint:ts": "eslint --ignore-path ./.eslintignore --ext .js,.ts .",
+    "postcompile": "npm run typechain",
+    "prettier:check": "prettier --check \"**/*.{js,json,md,sol,ts,yml}\"",
+    "prettier:write": "prettier --write \"**/*.{js,json,md,sol,ts,yml}\"",
+    "task:deployLock": "hardhat task:deployLock",
+    "task:withdraw": "hardhat task:withdraw",
+    "test": "hardhat test",
+    "typechain": "hardhat typechain"
+  }
+}
